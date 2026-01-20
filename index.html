@@ -14,131 +14,538 @@
 
   <style>
     :root{
-      --bg:#0b1220;--card:rgba(255,255,255,.06);--card2:rgba(255,255,255,.09);
-      --text:rgba(255,255,255,.92);--muted:rgba(255,255,255,.72);
-      --line:rgba(255,255,255,.14);--accent:#7ee7ff;--accent2:#b5ffcf;
-      --shadow:0 18px 60px rgba(0,0,0,.35);--radius:18px;
+      --bg: #0b1220;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --line: rgba(255,255,255,.14);
+      --accent: #7ee7ff;
+      --accent2:#b5ffcf;
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --radius: 18px;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--text);
       background:
         radial-gradient(1200px 800px at 15% 10%, rgba(126,231,255,.16), transparent 55%),
         radial-gradient(1000px 700px at 85% 20%, rgba(181,255,207,.14), transparent 55%),
         radial-gradient(900px 700px at 60% 95%, rgba(255,255,255,.08), transparent 55%),
         var(--bg);
+      line-height:1.55;
     }
-    a{color:inherit;text-decoration:none}
-    .container{width:min(1100px,92%);margin:auto}
+    a{ color:inherit; text-decoration:none; }
+    .container{ width:min(1100px, 92%); margin-inline:auto; }
 
     header{
-      position:sticky;top:0;z-index:10;
-      backdrop-filter:blur(10px);
-      background:linear-gradient(to bottom,rgba(11,18,32,.78),rgba(11,18,32,.35));
-      border-bottom:1px solid var(--line);
-      transition:transform .22s ease,opacity .22s ease;
-      will-change:transform;
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(11,18,32,.78), rgba(11,18,32,.35));
+      border-bottom: 1px solid var(--line);
+
+      /* Mobile hide/show animation */
+      transition: transform .22s ease, opacity .22s ease;
+      will-change: transform;
     }
-    header.is-hidden{transform:translateY(-110%);opacity:.98}
-
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{display:flex;gap:10px;font-weight:700}
-    .dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2))}
-    nav ul{display:flex;gap:8px;list-style:none;margin:0;padding:0}
-    nav a{padding:10px 12px;border-radius:999px;color:var(--muted)}
-    nav a:hover{background:var(--card);color:var(--text)}
-
-    .menu-btn{display:none;border:1px solid var(--line);background:var(--card);color:#fff;border-radius:12px;padding:10px 12px}
-    .mobile{display:none;padding-bottom:14px}
-    .mobile a{display:block;padding:10px 12px}
-
-    @media(max-width:720px){
-      nav ul{display:none}
-      .menu-btn{display:inline-flex}
-      .mobile{display:block}
-      header.is-hidden{pointer-events:none}
+    header.is-hidden{
+      transform: translateY(-110%);
+      opacity: 0.98;
     }
 
-    section{padding:34px 0}
-    footer{border-top:1px solid var(--line);padding:18px 0 28px;color:var(--muted);font-size:13px}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:700;
+      letter-spacing:.2px;
+      white-space:nowrap;
+    }
+    .dot{
+      width:12px; height:12px; border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 6px rgba(126,231,255,.10);
+    }
+    nav ul{
+      display:flex; list-style:none; margin:0; padding:0;
+      gap:8px; align-items:center;
+    }
+    nav a{
+      display:inline-flex;
+      padding:10px 12px;
+      border-radius: 999px;
+      color:var(--muted);
+      transition: background .2s ease, color .2s ease;
+    }
+    nav a:hover{ background: var(--card); color:var(--text); }
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px;
+      border-radius:999px;
+      background: linear-gradient(135deg, rgba(126,231,255,.22), rgba(181,255,207,.18));
+      border: 1px solid rgba(126,231,255,.35);
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      color:var(--text);
+    }
+    .cta:hover{ filter: brightness(1.08); }
+
+    .menu-btn{
+      display:none;
+      border:1px solid var(--line);
+      background: var(--card);
+      color: var(--text);
+      border-radius: 12px;
+      padding:10px 12px;
+      cursor:pointer;
+    }
+    .mobile{ display:none; padding-bottom:14px; }
+    .mobile a{ display:block; padding:10px 12px; border-radius:12px; }
+    .mobile a:hover{ background: var(--card); }
+
+    .hero{ padding:56px 0 28px; }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+    .headline{
+      font-size: clamp(30px, 4vw, 44px);
+      line-height:1.12;
+      margin:0 0 12px;
+      letter-spacing: -.3px;
+    }
+    .sub{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size: clamp(15px, 1.35vw, 18px);
+      max-width: 62ch;
+    }
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+    .hero-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--text);
+      transition: transform .12s ease, background .2s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); background: var(--card2); }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(126,231,255,.28), rgba(181,255,207,.20));
+      border-color: rgba(126,231,255,.45);
+    }
+    .pill-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 13px;
+      display:inline-flex; gap:8px; align-items:center;
+    }
+    .pill .mini{ width:8px; height:8px; border-radius:999px; background: rgba(126,231,255,.75); }
+
+    .side{ display:flex; flex-direction:column; gap:12px; }
+    .profile{ display:flex; gap:14px; align-items:center; }
+    .avatar{
+      width:56px; height:56px; border-radius: 16px;
+      background:
+        radial-gradient(circle at 25% 25%, rgba(126,231,255,.55), transparent 55%),
+        radial-gradient(circle at 75% 75%, rgba(181,255,207,.45), transparent 55%),
+        rgba(255,255,255,.06);
+      border: 1px solid var(--line);
+    }
+    .name{ font-weight:750; margin:0; }
+    .role{ margin:2px 0 0; color:var(--muted); font-size:14px; }
+    .info{
+      display:grid; gap:10px;
+      margin-top: 6px;
+    }
+    .info .row{
+      display:flex; justify-content:space-between; gap:12px;
+      padding:10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .info .row span:last-child{ color: var(--text); font-weight: 650; }
+
+    section{ padding: 34px 0; }
+    .section-title{ font-size: 22px; margin:0 0 12px; letter-spacing: -.2px; }
+    .section-sub{ margin:0 0 18px; color:var(--muted); max-width: 70ch; }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .card{
+      padding:18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 10px 28px rgba(0,0,0,.22);
+    }
+    .card h3{ margin:0 0 8px; font-size: 16px; }
+    .card p{ margin:0; color:var(--muted); }
+
+    .two-col{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items:start;
+    }
+
+    .list{
+      margin:10px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .list li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+      color: var(--muted);
+    }
+    .check{
+      width:18px; height:18px; border-radius:6px;
+      background: linear-gradient(135deg, rgba(126,231,255,.35), rgba(181,255,207,.25));
+      border:1px solid rgba(126,231,255,.35);
+      flex: 0 0 auto;
+      margin-top:2px;
+    }
+
+    footer{
+      border-top: 1px solid var(--line);
+      padding: 18px 0 28px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .two-col{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px){
+      nav ul{ display:none; }
+      .menu-btn{ display:inline-flex; }
+      .mobile{ display:block; }
+      .hero{ padding-top: 34px; }
+
+      /* όταν το header είναι hidden στο mobile, να μη πιάνει clicks */
+      header.is-hidden{ pointer-events:none; }
+    }
   </style>
 </head>
 
 <body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Αρχική">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Χρυσούλα Κοκκίνου</span>
+        </a>
 
-<header>
-  <div class="container">
-    <div class="nav">
-      <a class="brand" href="#top"><span class="dot"></span>Χρυσούλα Κοκκίνου</a>
-      <nav>
-        <ul>
-          <li><a href="#about">Σχετικά</a></li>
-          <li><a href="#services">Υπηρεσίες</a></li>
-          <li><a href="#approach">Προσέγγιση</a></li>
-          <li><a href="#contact">Επικοινωνία</a></li>
+        <nav aria-label="Κύρια πλοήγηση">
+          <ul>
+            <li><a href="#about">Σχετικά</a></li>
+            <li><a href="#services">Υπηρεσίες</a></li>
+            <li><a href="#approach">Προσέγγιση</a></li>
+            <li><a href="#contact">Επικοινωνία</a></li>
+          </ul>
+        </nav>
+
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav">
+          Μενού
+        </button>
+
+        <!-- Ραντεβού μέσω τηλεφώνου -->
+        <a class="cta" href="tel:+30XXXXXXXXXX">Κλείστε ραντεβού</a>
+      </div>
+
+      <div class="mobile" id="mobileNav" hidden>
+        <a href="#about">Σχετικά</a>
+        <a href="#services">Υπηρεσίες</a>
+        <a href="#approach">Προσέγγιση</a>
+        <a href="#contact">Επικοινωνία</a>
+        <a href="tel:+30XXXXXXXXXX">Κλείστε ραντεβού (τηλέφωνο)</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="container hero">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <h1 class="headline">Υποστήριξη με σεβασμό, εχεμύθεια και ανθρώπινη προσέγγιση.</h1>
+          <p class="sub">
+            Η <strong>Χρυσούλα Κοκκίνου</strong> είναι <strong>Ψυχολόγος</strong> με έδρα το <strong>Αιγάλεω</strong>,
+            προσφέροντας υπηρεσίες ψυχολογικής υποστήριξης και θεραπείας.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="tel:+30XXXXXXXXXX">Κλείστε ραντεβού (τηλέφωνο)</a>
+            <a class="btn" href="#services">Δείτε υπηρεσίες</a>
+            <a class="btn" href="mailto:example@email.com?subject=%CE%91%CE%AF%CF%84%CE%B7%CE%BC%CE%B1%20%CE%B5%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%AF%CE%B1%CF%82">Στείλτε μήνυμα (email)</a>
+          </div>
+
+          <div class="pill-row" aria-label="Γρήγορες πληροφορίες">
+            <span class="pill"><span class="mini" aria-hidden="true"></span>Αιγάλεω</span>
+            <span class="pill"><span class="mini" aria-hidden="true"></span>Ψυχολογική υποστήριξη</span>
+            <span class="pill"><span class="mini" aria-hidden="true"></span>Θεραπεία</span>
+          </div>
+        </div>
+
+        <aside class="side">
+          <div class="hero-card">
+            <div class="profile">
+              <div class="avatar" aria-hidden="true"></div>
+              <div>
+                <p class="name">Χρυσούλα Κοκκίνου</p>
+                <p class="role">Ψυχολόγος • Αιγάλεω</p>
+              </div>
+            </div>
+
+            <div class="info" role="list" aria-label="Στοιχεία">
+              <div class="row" role="listitem"><span>Περιοχή</span><span>Αιγάλεω</span></div>
+              <div class="row" role="listitem"><span>Ραντεβού</span><span>Μέσω τηλεφώνου</span></div>
+              <div class="row" role="listitem"><span>Επικοινωνία</span><span>Με ραντεβού</span></div>
+            </div>
+
+            <p class="section-sub" style="margin:12px 0 0;">
+              Για προγραμματισμό ραντεβού, παρακαλώ καλέστε στο τηλέφωνο επικοινωνίας.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">Σχετικά</h2>
+        <p class="section-sub">
+          (Προαιρετικό) Εδώ μπορεί να μπει ένα σύντομο κείμενο 5–8 γραμμών με την επαγγελματική της παρουσίαση
+          και τη φιλοσοφία της δουλειάς της.
+        </p>
+
+        <div class="two-col">
+          <div class="card">
+            <h3>Στόχος</h3>
+            <p>
+              Δημιουργία ενός ασφαλούς πλαισίου, όπου μπορείτε να εκφραστείτε χωρίς φόβο κριτικής, με σεβασμό και εχεμύθεια.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Διαδικασία</h3>
+            <p>
+              Μια συνεργατική πορεία, με στόχο την κατανόηση, την ενδυνάμωση και πρακτικά βήματα προς αλλαγές που έχουν νόημα για εσάς.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <h2 class="section-title">Υπηρεσίες</h2>
+        <p class="section-sub">
+          Ενδεικτικές υπηρεσίες ψυχολογικής υποστήριξης και θεραπείας.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Ατομικές συνεδρίες</h3>
+            <p>Ψυχολογική υποστήριξη και θεραπευτική διαδικασία με επίκεντρο τις ανάγκες σας.</p>
+          </div>
+          <div class="card">
+            <h3>Άγχος & στρες</h3>
+            <p>Υποστήριξη στη διαχείριση πίεσης, υπερέντασης και καθημερινών απαιτήσεων.</p>
+          </div>
+          <div class="card">
+            <h3>Σχέσεις & αυτοεκτίμηση</h3>
+            <p>Δουλειά σε θέματα ορίων, επικοινωνίας, αυτοεικόνας και συναισθηματικής ισορροπίας.</p>
+          </div>
+        </div>
+
+        <ul class="list" aria-label="Επιπλέον θέματα">
+          <li><span class="check" aria-hidden="true"></span> Προσωπική ανάπτυξη, αυτογνωσία, αλλαγές ζωής</li>
+          <li><span class="check" aria-hidden="true"></span> Διαχείριση συναισθημάτων και ενδυνάμωση</li>
+          <li><span class="check" aria-hidden="true"></span> Ψυχολογική υποστήριξη και θεραπεία</li>
         </ul>
-      </nav>
-      <button class="menu-btn" id="menuBtn" aria-expanded="false">Μενού</button>
-    </div>
-    <div class="mobile" id="mobileNav" hidden>
-      <a href="#about">Σχετικά</a>
-      <a href="#services">Υπηρεσίες</a>
-      <a href="#approach">Προσέγγιση</a>
-      <a href="#contact">Επικοινωνία</a>
-    </div>
-  </div>
-</header>
+      </div>
+    </section>
 
-<main id="top" class="container">
-  <section id="about"><h2>Σχετικά</h2><p>Περιεχόμενο…</p></section>
-  <section id="services"><h2>Υπηρεσίες</h2><p>Περιεχόμενο…</p></section>
-  <section id="approach"><h2>Προσέγγιση</h2><p>Περιεχόμενο…</p></section>
-  <section id="contact"><h2>Επικοινωνία</h2><p>Περιεχόμενο…</p></section>
-</main>
+    <section id="approach">
+      <div class="container">
+        <h2 class="section-title">Προσέγγιση</h2>
+        <p class="section-sub">
+          (Προαιρετικό) Προσθέστε με απλά λόγια τον τρόπο δουλειάς/προσέγγιση, και τι να περιμένει κάποιος από την πρώτη συνεδρία.
+        </p>
 
-<footer>
-  <div class="container">© <span id="year"></span> Χρυσούλα Κοκκίνου</div>
-</footer>
+        <div class="two-col">
+          <div class="card">
+            <h3>Πρώτη συνεδρία</h3>
+            <p>
+              Πρώτη γνωριμία, συζήτηση του αιτήματος και ορισμός πλαισίου συνεργασίας.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Εχεμύθεια</h3>
+            <p>
+              Η εμπιστευτικότητα αποτελεί βασική αρχή της διαδικασίας, σύμφωνα με τη δεοντολογία.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- ✅ ΕΝΑ ΚΑΙ ΜΟΝΟ SCRIPT -->
-<script>
-  const yearEl=document.getElementById("year");
-  if(yearEl) yearEl.textContent=new Date().getFullYear();
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Επικοινωνία</h2>
+        <p class="section-sub">
+          Για ραντεβού, παρακαλώ καλέστε στο τηλέφωνο. Για γενικές πληροφορίες, μπορείτε να στείλετε email.
+        </p>
 
-  const headerEl=document.querySelector("header");
-  const btn=document.getElementById("menuBtn");
-  const mobile=document.getElementById("mobileNav");
+        <div class="two-col">
+          <div class="card">
+            <h3>Ραντεβού</h3>
+            <p style="color:var(--muted); margin:0 0 14px;">
+              Τα ραντεβού προγραμματίζονται αποκλειστικά τηλεφωνικά.
+            </p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn primary" href="tel:+30XXXXXXXXXX">Καλέστε τώρα</a>
+              <a class="btn" href="mailto:example@email.com?subject=%CE%95%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%AF%CE%B1">Στείλτε email</a>
+            </div>
+            <p style="margin:14px 0 0; color:var(--muted); font-size:13px;">
+              Παρακαλώ αποφύγετε να γράφετε ευαίσθητες προσωπικές πληροφορίες στο email.
+            </p>
+          </div>
 
-  function closeMenu(){
-    btn.setAttribute("aria-expanded","false");
-    mobile.hidden=true;
-  }
+          <div class="card">
+            <h3>Στοιχεία</h3>
+            <div class="info" role="list" aria-label="Στοιχεία επικοινωνίας">
+              <div class="row" role="listitem"><span>Περιοχή</span><span>Αιγάλεω</span></div>
+              <div class="row" role="listitem">
+                <span>Τηλέφωνο</span>
+                <span><a href="tel:+30XXXXXXXXXX" style="text-decoration:underline; text-underline-offset:3px;">+30 XXXXXXXXXX</a></span>
+              </div>
+              <div class="row" role="listitem">
+                <span>Email</span>
+                <span><a href="mailto:example@email.com" style="text-decoration:underline; text-underline-offset:3px;">example@email.com</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  btn.addEventListener("click",()=>{
-    const open=btn.getAttribute("aria-expanded")==="true";
-    btn.setAttribute("aria-expanded",String(!open));
-    mobile.hidden=open;
-    if(!open) headerEl.classList.remove("is-hidden");
-  });
+    <footer>
+      <div class="container">
+        <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+          <span>© <span id="year"></span> Χρυσούλα Κοκκίνου — Ψυχολόγος (Αιγάλεω)</span>
+          <span style="opacity:.9;">All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </main>
 
-  mobile.querySelectorAll("a").forEach(a=>a.addEventListener("click",closeMenu));
+  <!-- ✅ ONE SCRIPT ONLY (no duplicates, no head scripts) -->
+  <script>
+    // Year (safe)
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  let lastY=window.scrollY,ticking=false;
-  function onScroll(){
-    const y=window.scrollY;
-    if(window.innerWidth<=720){
-      if(y<60) headerEl.classList.remove("is-hidden");
-      else if(Math.abs(y-lastY)>8){
-        y>lastY?(closeMenu(),headerEl.classList.add("is-hidden")):headerEl.classList.remove("is-hidden");
-      }
+    const headerEl = document.querySelector("header");
+    const btn = document.getElementById("menuBtn");
+    const mobile = document.getElementById("mobileNav");
+
+    function closeMenu(){
+      if (!btn || !mobile) return;
+      btn.setAttribute("aria-expanded","false");
+      mobile.hidden = true;
     }
-    lastY=y;ticking=false;
-  }
-  window.addEventListener("scroll",()=>{if(!ticking){requestAnimationFrame(onScroll);ticking=true;}},{passive:true});
-</script>
 
+    // Mobile menu toggle
+    if (btn && mobile) {
+      btn.addEventListener("click", () => {
+        const open = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!open));
+        mobile.hidden = open;
+
+        // when opening menu, keep header visible
+        if (!open) headerEl.classList.remove("is-hidden");
+      });
+
+      // close on link click
+      mobile.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => {
+          closeMenu();
+          headerEl.classList.remove("is-hidden");
+        });
+      });
+    }
+
+    // Hide header on scroll-down (mobile only), show on scroll-up
+    let lastY = window.scrollY || 0;
+    let ticking = false;
+
+    function handleScroll(){
+      const y = window.scrollY || 0;
+
+      if (window.matchMedia("(max-width: 720px)").matches) {
+        const delta = y - lastY;
+
+        if (y < 60) {
+          headerEl.classList.remove("is-hidden");
+        } else if (Math.abs(delta) > 8) {
+          if (delta > 0) {
+            // scroll down
+            closeMenu();
+            headerEl.classList.add("is-hidden");
+          } else {
+            // scroll up
+            headerEl.classList.remove("is-hidden");
+          }
+        }
+      } else {
+        // desktop: always visible
+        headerEl.classList.remove("is-hidden");
+      }
+
+      lastY = y;
+      ticking = false;
+    }
+
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(handleScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+  </script>
 </body>
 </html>
