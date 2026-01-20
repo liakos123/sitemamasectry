@@ -2,576 +2,285 @@
 <html lang="el">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Χρυσούλα Κοκκίνου — Ψυχολόγος στο Αιγάλεω. Υπηρεσίες ψυχολογικής υποστήριξης και θεραπείας." />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="description" content="Χρυσούλα Κοκκίνου — Ψυχολόγος στο Αιγάλεω. Ραντεβού μέσω τηλεφώνου." />
   <title>Χρυσούλα Κοκκίνου | Ψυχολόγος στο Αιγάλεω</title>
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Χρυσούλα Κοκκίνου | Ψυχολόγος στο Αιγάλεω" />
-  <meta property="og:description" content="Υπηρεσίες ψυχολογικής υποστήριξης και θεραπείας στο Αιγάλεω." />
-  <meta property="og:type" content="website" />
-
-  <!-- Favicon (προαιρετικό) -->
-  <link rel="icon" href="data:," />
 
   <style>
     :root{
-      --bg: #0b1220;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.09);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.72);
-      --line: rgba(255,255,255,.14);
-      --accent: #7ee7ff;
+      --bg:#0b1220;
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --line:rgba(255,255,255,.14);
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.09);
+      --accent:#7ee7ff;
       --accent2:#b5ffcf;
-      --shadow: 0 18px 60px rgba(0,0,0,.35);
-      --radius: 18px;
+      --shadow:0 18px 60px rgba(0,0,0,.35);
+      --radius:18px;
     }
 
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:var(--bg);
       color:var(--text);
-      background:
-        radial-gradient(1200px 800px at 15% 10%, rgba(126,231,255,.16), transparent 55%),
-        radial-gradient(1000px 700px at 85% 20%, rgba(181,255,207,.14), transparent 55%),
-        radial-gradient(900px 700px at 60% 95%, rgba(255,255,255,.08), transparent 55%),
-        var(--bg);
       line-height:1.55;
+      overflow-x:hidden;
     }
 
     a{ color:inherit; text-decoration:none; }
-    .container{ width:min(1100px, 92%); margin-inline:auto; }
+    .container{ width:min(1100px, 92%); margin:auto; }
 
-    /* Header */
+    /* HEADER */
     header{
-      position:sticky; top:0; z-index:10;
-      backdrop-filter: blur(10px);
-      background: linear-gradient(to bottom, rgba(11,18,32,.78), rgba(11,18,32,.35));
-      border-bottom: 1px solid var(--line);
+      position:sticky;
+      top:0;
+      background:rgba(11,18,32,.9);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+      z-index:10;
     }
     .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
       padding:14px 0;
     }
     .brand{
-      display:flex; align-items:center; gap:10px;
       font-weight:700;
-      letter-spacing:.2px;
       white-space:nowrap;
     }
-    .dot{
-      width:12px; height:12px; border-radius:999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 6px rgba(126,231,255,.10);
-    }
+
     nav ul{
-      display:flex; list-style:none; margin:0; padding:0;
-      gap:8px; align-items:center;
+      display:flex;
+      gap:10px;
+      list-style:none;
+      margin:0;
+      padding:0;
     }
     nav a{
-      display:inline-flex;
-      padding:10px 12px;
-      border-radius: 999px;
+      padding:8px 12px;
+      border-radius:999px;
       color:var(--muted);
-      transition: background .2s ease, color .2s ease;
     }
-    nav a:hover{ background: var(--card); color:var(--text); }
+    nav a:hover{ background:var(--card); color:var(--text); }
+
     .cta{
-      display:inline-flex; align-items:center; justify-content:center;
       padding:10px 14px;
       border-radius:999px;
-      background: linear-gradient(135deg, rgba(126,231,255,.22), rgba(181,255,207,.18));
-      border: 1px solid rgba(126,231,255,.35);
-      box-shadow: 0 12px 30px rgba(0,0,0,.25);
-      color:var(--text);
+      background:linear-gradient(135deg, rgba(126,231,255,.28), rgba(181,255,207,.2));
+      border:1px solid rgba(126,231,255,.4);
+      white-space:nowrap;
     }
-    .cta:hover{ filter: brightness(1.08); }
 
-    /* Mobile menu */
     .menu-btn{
       display:none;
+      background:var(--card);
       border:1px solid var(--line);
-      background: var(--card);
-      color: var(--text);
-      border-radius: 12px;
-      padding:10px 12px;
-      cursor:pointer;
+      border-radius:12px;
+      padding:8px 12px;
+      color:var(--text);
     }
+
     .mobile{
       display:none;
-      padding-bottom:14px;
+      padding-bottom:12px;
     }
-    .mobile a{ display:block; padding:10px 12px; border-radius:12px; }
-    .mobile a:hover{ background: var(--card); }
+    .mobile a{
+      display:block;
+      padding:10px 12px;
+      border-radius:12px;
+    }
+    .mobile a:hover{ background:var(--card); }
 
-    /* Hero */
-    .hero{
-      padding:56px 0 28px;
-    }
+    /* HERO */
+    .hero{ padding:48px 0 28px; }
     .hero-grid{
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 18px;
-      align-items:stretch;
-    }
-    .headline{
-      font-size: clamp(30px, 4vw, 44px);
-      line-height:1.12;
-      margin:0 0 12px;
-      letter-spacing: -.3px;
-    }
-    .sub{
-      margin:0 0 18px;
-      color:var(--muted);
-      font-size: clamp(15px, 1.35vw, 18px);
-      max-width: 62ch;
+      grid-template-columns:1.2fr .8fr;
+      gap:18px;
     }
     .hero-card{
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
     }
-    .hero-actions{ display:flex; gap:10px; flex-wrap:wrap; }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:12px 14px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: var(--card);
-      color: var(--text);
-      transition: transform .12s ease, filter .12s ease, background .2s ease;
-    }
-    .btn:hover{ transform: translateY(-1px); background: var(--card2); }
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(126,231,255,.28), rgba(181,255,207,.20));
-      border-color: rgba(126,231,255,.45);
-    }
-    .pill-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
-    .pill{
-      padding:8px 10px;
-      border-radius:999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-size: 13px;
-      display:inline-flex; gap:8px; align-items:center;
-    }
-    .pill .mini{ width:8px; height:8px; border-radius:999px; background: rgba(126,231,255,.75); }
-
-    .side{
-      display:flex; flex-direction:column; gap:12px;
-    }
-    .profile{
-      display:flex; gap:14px; align-items:center;
-    }
-    .avatar{
-      width:56px; height:56px; border-radius: 16px;
-      background:
-        radial-gradient(circle at 25% 25%, rgba(126,231,255,.55), transparent 55%),
-        radial-gradient(circle at 75% 75%, rgba(181,255,207,.45), transparent 55%),
-        rgba(255,255,255,.06);
-      border: 1px solid var(--line);
-    }
-    .name{ font-weight:750; margin:0; }
-    .role{ margin:2px 0 0; color:var(--muted); font-size:14px; }
-    .info{
-      display:grid; gap:10px;
-      margin-top: 6px;
-    }
-    .info .row{
-      display:flex; justify-content:space-between; gap:12px;
-      padding:10px 12px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .info .row span:last-child{ color: var(--text); font-weight: 650; }
-
-    /* Sections */
-    section{ padding: 34px 0; }
-    .section-title{
-      font-size: 22px;
+    h1{
       margin:0 0 12px;
-      letter-spacing: -.2px;
+      font-size:clamp(26px, 5vw, 40px);
+      line-height:1.15;
     }
-    .section-sub{
-      margin:0 0 18px;
-      color:var(--muted);
-      max-width: 70ch;
+    .sub{ color:var(--muted); }
+
+    .hero-actions{
+      display:flex;
+      gap:10px;
+      margin-top:18px;
+      flex-wrap:wrap;
     }
+    .btn{
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:var(--card2);
+      text-align:center;
+    }
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(126,231,255,.28), rgba(181,255,207,.2));
+      border-color:rgba(126,231,255,.4);
+    }
+
+    section{ padding:32px 0; }
+    h2{ margin:0 0 12px; }
+
     .grid-3{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
     }
     .card{
-      padding:18px;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      box-shadow: 0 10px 28px rgba(0,0,0,.22);
-    }
-    .card h3{ margin:0 0 8px; font-size: 16px; }
-    .card p{ margin:0; color:var(--muted); }
-
-    .two-col{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      align-items:start;
-    }
-    .list{
-      margin:10px 0 0;
-      padding:0;
-      list-style:none;
-      display:grid;
-      gap:10px;
-    }
-    .list li{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:12px 12px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.035);
-      color: var(--muted);
-    }
-    .check{
-      width:18px; height:18px; border-radius:6px;
-      background: linear-gradient(135deg, rgba(126,231,255,.35), rgba(181,255,207,.25));
-      border:1px solid rgba(126,231,255,.35);
-      flex: 0 0 auto;
-      margin-top:2px;
-    }
-
-    /* Contact */
-    .contact-wrap{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    form{
-      display:grid; gap:10px;
-    }
-    label{ font-size: 13px; color: var(--muted); }
-    input, textarea{
-      width:100%;
-      padding:12px 12px;
-      border-radius: 14px;
+      background:var(--card);
       border:1px solid var(--line);
-      background: rgba(0,0,0,.18);
-      color: var(--text);
-      outline: none;
-    }
-    textarea{ min-height: 120px; resize: vertical; }
-    .note{
-      font-size: 12px;
-      color: var(--muted);
-      margin: 8px 0 0;
-    }
-    .contact-card .row{
-      display:flex; justify-content:space-between; gap:12px;
-      padding:12px 12px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.035);
-      margin-bottom:10px;
-      color: var(--muted);
-      align-items:center;
-    }
-    .contact-card a.link{
-      color: var(--text);
-      text-decoration: underline;
-      text-underline-offset: 3px;
+      border-radius:var(--radius);
+      padding:18px;
     }
 
     footer{
-      border-top: 1px solid var(--line);
-      padding: 18px 0 28px;
-      color: var(--muted);
-      font-size: 13px;
+      border-top:1px solid var(--line);
+      padding:18px 0;
+      font-size:13px;
+      color:var(--muted);
     }
 
-    /* Responsive */
-    @media (max-width: 900px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      .grid-3{ grid-template-columns: 1fr; }
-      .two-col{ grid-template-columns: 1fr; }
-      .contact-wrap{ grid-template-columns: 1fr; }
+    /* ===== MOBILE FIXES ===== */
+    @media (max-width:900px){
+      .hero-grid{ grid-template-columns:1fr; }
+      .grid-3{ grid-template-columns:1fr; }
     }
-    @media (max-width: 720px){
+
+    @media (max-width:720px){
       nav ul{ display:none; }
-      .menu-btn{ display:inline-flex; }
+      .menu-btn{ display:block; }
+      .cta{ display:none; }
       .mobile{ display:block; }
-      .hero{ padding-top: 34px; }
+
+      .hero{ padding:32px 0 20px; }
+      .hero-actions{
+        flex-direction:column;
+      }
+      .hero-actions .btn{
+        width:100%;
+      }
     }
   </style>
-
-  <!-- Μικρό structured data (προαιρετικό) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Χρυσούλα Κοκκίνου",
-    "jobTitle": "Ψυχολόγος",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Αιγάλεω",
-      "addressCountry": "GR"
-    }
-  }
-  </script>
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <div class="nav">
-        <a class="brand" href="#top" aria-label="Αρχική">
-          <span class="dot" aria-hidden="true"></span>
-          <span>Χρυσούλα Κοκκίνου</span>
-        </a>
+<header>
+  <div class="container">
+    <div class="nav">
+      <div class="brand">Χρυσούλα Κοκκίνου</div>
 
-        <nav aria-label="Κύρια πλοήγηση">
-          <ul>
-            <li><a href="#about">Σχετικά</a></li>
-            <li><a href="#services">Υπηρεσίες</a></li>
-            <li><a href="#approach">Προσέγγιση</a></li>
-            <li><a href="#contact">Επικοινωνία</a></li>
-          </ul>
-        </nav>
-
-        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav">
-          Μενού
-        </button>
-
-        <a class="cta" href="#contact">Κλείστε ραντεβού</a>
-      </div>
-
-      <div class="mobile" id="mobileNav" hidden>
-        <a href="#about">Σχετικά</a>
-        <a href="#services">Υπηρεσίες</a>
-        <a href="#approach">Προσέγγιση</a>
-        <a href="#contact">Επικοινωνία</a>
-      </div>
-    </div>
-  </header>
-
-  <main id="top">
-    <!-- HERO -->
-    <div class="container hero">
-      <div class="hero-grid">
-        <div class="hero-card">
-          <h1 class="headline">Ένας ασφαλής χώρος για να μιλήσετε, να κατανοήσετε και να εξελιχθείτε.</h1>
-          <p class="sub">
-            Η <strong>Χρυσούλα Κοκκίνου</strong> είναι <strong>Ψυχολόγος</strong> με έδρα το <strong>Αιγάλεω</strong>,
-            προσφέροντας υπηρεσίες ψυχολογικής υποστήριξης και θεραπείας με σεβασμό, εχεμύθεια και ανθρώπινη προσέγγιση.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn primary" href="#contact">Επικοινωνία</a>
-            <a class="btn" href="#services">Δείτε υπηρεσίες</a>
-          </div>
-
-          <div class="pill-row" aria-label="Γρήγορες πληροφορίες">
-            <span class="pill"><span class="mini" aria-hidden="true"></span>Αιγάλεω</span>
-            <span class="pill"><span class="mini" aria-hidden="true"></span>Ψυχολογική υποστήριξη</span>
-            <span class="pill"><span class="mini" aria-hidden="true"></span>Θεραπεία</span>
-          </div>
-        </div>
-
-        <aside class="side">
-          <div class="hero-card">
-            <div class="profile">
-              <div class="avatar" aria-hidden="true"></div>
-              <div>
-                <p class="name">Χρυσούλα Κοκκίνου</p>
-                <p class="role">Ψυχολόγος • Αιγάλεω</p>
-              </div>
-            </div>
-
-            <div class="info" role="list" aria-label="Στοιχεία">
-              <div class="row" role="listitem"><span>Περιοχή</span><span>Αιγάλεω</span></div>
-              <div class="row" role="listitem"><span>Υπηρεσίες</span><span>Υποστήριξη & Θεραπεία</span></div>
-              <div class="row" role="listitem"><span>Επικοινωνία</span><span>Με ραντεβού</span></div>
-            </div>
-
-            <p class="note">
-              *Σημείωση: Συμπληρώστε/διορθώστε ό,τι θέλετε (τηλέφωνο, email, διεύθυνση, online συνεδρίες).
-            </p>
-          </div>
-
-          <div class="hero-card" style="border-color: rgba(126,231,255,.28);">
-            <h2 class="section-title" style="margin-bottom:6px;">Δώρο-έκπληξη 💙</h2>
-            <p class="section-sub" style="margin:0;">
-              Αυτό το site δημιουργήθηκε με αγάπη, για να αντικατοπτρίζει τη φροντίδα και την αφοσίωση στη δουλειά της.
-            </p>
-          </div>
-        </aside>
-      </div>
-    </div>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="container">
-        <h2 class="section-title">Σχετικά</h2>
-        <p class="section-sub">
-          Εδώ μπορεί να μπει ένα σύντομο, ανθρώπινο κείμενο 5–8 γραμμών: ποια είναι, τι την ενέπνευσε να ασχοληθεί με την ψυχολογία,
-          και πώς στηρίζει τους ανθρώπους που την εμπιστεύονται.
-        </p>
-
-        <div class="two-col">
-          <div class="card">
-            <h3>Η φιλοσοφία μου</h3>
-            <p>
-              Προτεραιότητα είναι η δημιουργία ενός ασφαλούς πλαισίου, όπου ο καθένας μπορεί να εκφραστεί χωρίς φόβο κριτικής,
-              με σεβασμό στην ιδιωτικότητα και στον προσωπικό ρυθμό.
-            </p>
-          </div>
-          <div class="card">
-            <h3>Τι να περιμένετε</h3>
-            <p>
-              Μια συνεργατική διαδικασία με στόχο την κατανόηση, την ενδυνάμωση και πρακτικά βήματα προς αλλαγές που έχουν νόημα για εσάς.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services">
-      <div class="container">
-        <h2 class="section-title">Υπηρεσίες</h2>
-        <p class="section-sub">
-          Ενδεικτικές υπηρεσίες ψυχολογικής υποστήριξης και θεραπείας. Προσαρμόστε τη λίστα ανάλογα με το τι προσφέρει η μητέρα σου.
-        </p>
-
-        <div class="grid-3">
-          <div class="card">
-            <h3>Ατομικές συνεδρίες</h3>
-            <p>Ψυχολογική υποστήριξη και θεραπευτική διαδικασία με επίκεντρο τις ανάγκες σας.</p>
-          </div>
-          <div class="card">
-            <h3>Άγχος & στρες</h3>
-            <p>Εργαλεία και κατανόηση για τη διαχείριση πίεσης, υπερέντασης και καθημερινών απαιτήσεων.</p>
-          </div>
-          <div class="card">
-            <h3>Σχέσεις & αυτοεκτίμηση</h3>
-            <p>Υποστήριξη σε θέματα ορίων, επικοινωνίας, αυτοεικόνας και συναισθηματικής ισορροπίας.</p>
-          </div>
-        </div>
-
-        <ul class="list" aria-label="Επιπλέον θέματα">
-          <li><span class="check" aria-hidden="true"></span> Προσωπική ανάπτυξη, αυτογνωσία, αλλαγές ζωής</li>
-          <li><span class="check" aria-hidden="true"></span> Διαχείριση συναισθημάτων και ενδυνάμωση</li>
-          <li><span class="check" aria-hidden="true"></span> (Προαιρετικό) Online συνεδρίες — αν παρέχονται</li>
+      <nav>
+        <ul>
+          <li><a href="#about">Σχετικά</a></li>
+          <li><a href="#services">Υπηρεσίες</a></li>
+          <li><a href="#contact">Επικοινωνία</a></li>
         </ul>
-      </div>
-    </section>
+      </nav>
 
-    <!-- APPROACH -->
-    <section id="approach">
-      <div class="container">
-        <h2 class="section-title">Προσέγγιση</h2>
-        <p class="section-sub">
-          Αν θέλετε, εδώ προσθέτετε την προσέγγιση/μεθοδολογία (π.χ. συμβουλευτική, γνωσιακή-συμπεριφορική κ.λπ.) με απλά λόγια.
+      <button class="menu-btn" id="menuBtn">Μενού</button>
+      <a class="cta" href="tel:+30XXXXXXXXXX">Κλείστε ραντεβού</a>
+    </div>
+
+    <div class="mobile" id="mobileNav" hidden>
+      <a href="#about">Σχετικά</a>
+      <a href="#services">Υπηρεσίες</a>
+      <a href="#contact">Επικοινωνία</a>
+      <a href="tel:+30XXXXXXXXXX">Κλείστε ραντεβού (τηλέφωνο)</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container hero">
+    <div class="hero-grid">
+      <div class="hero-card">
+        <h1>Υποστήριξη με σεβασμό και εχεμύθεια</h1>
+        <p class="sub">
+          Η Χρυσούλα Κοκκίνου είναι Ψυχολόγος στο Αιγάλεω και παρέχει
+          υπηρεσίες ψυχολογικής υποστήριξης και θεραπείας.
         </p>
 
-        <div class="two-col">
-          <div class="card">
-            <h3>Πρώτη συνεδρία</h3>
-            <p>
-              Γίνεται μια πρώτη γνωριμία, συζητάμε τι σας απασχολεί και ορίζουμε μαζί τον στόχο και το πλαίσιο συνεργασίας.
-            </p>
-          </div>
-          <div class="card">
-            <h3>Εχεμύθεια</h3>
-            <p>
-              Η εμπιστευτικότητα είναι βασική αρχή. Ό,τι συζητείται παραμένει ιδιωτικό, μέσα στο πλαίσιο της δεοντολογίας.
-            </p>
-          </div>
+        <div class="hero-actions">
+          <a class="btn primary" href="tel:+30XXXXXXXXXX">Κλείστε ραντεβού</a>
+          <a class="btn" href="mailto:example@email.com">Στείλτε email</a>
         </div>
       </div>
-    </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="container">
-        <h2 class="section-title">Επικοινωνία</h2>
-        <p class="section-sub">
-          Συμπληρώστε τα στοιχεία και προσαρμόστε τα κουμπιά. Η φόρμα εδώ είναι “στατική” (χωρίς backend) — αν θες, μπορώ να σου τη συνδέσω
-          με email (π.χ. Formspree) ή να σου δώσω απλό backend.
-        </p>
-
-        <div class="contact-wrap">
-          <div class="card">
-            <h3>Στείλτε μήνυμα</h3>
-            <form onsubmit="return fakeSend(event)">
-              <div>
-                <label for="name">Ονοματεπώνυμο</label>
-                <input id="name" name="name" type="text" placeholder="π.χ. Μαρία Παπαδοπούλου" required />
-              </div>
-              <div>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="name@email.com" required />
-              </div>
-              <div>
-                <label for="msg">Μήνυμα</label>
-                <textarea id="msg" name="msg" placeholder="Γράψτε λίγα λόγια για το αίτημά σας..." required></textarea>
-              </div>
-              <button class="btn primary" type="submit">Αποστολή</button>
-              <p class="note" id="formNote"></p>
-            </form>
-          </div>
-
-          <div class="card contact-card">
-            <h3>Στοιχεία</h3>
-
-            <div class="row">
-              <span>Περιοχή</span>
-              <strong>Αιγάλεω</strong>
-            </div>
-
-            <div class="row">
-              <span>Τηλέφωνο</span>
-              <a class="link" href="tel:+30XXXXXXXXXX">+30 XXXXXXXXXX</a>
-            </div>
-
-            <div class="row">
-              <span>Email</span>
-              <a class="link" href="mailto:example@email.com">example@email.com</a>
-            </div>
-
-            <div class="row">
-              <span>Ραντεβού</span>
-              <a class="link" href="https://www.doctoranytime.gr/d/Psychologos/kokkinou-xrysoula" target="_blank" rel="noopener">
-                μέσω Doctoranytime
-              </a>
-            </div>
-
-            <p class="note">
-              *Βάλε εδώ την πλήρη διεύθυνση γραφείου (αν θέλει). Μπορείς μετά να βάλεις και Google Map iframe.
-            </p>
-          </div>
-        </div>
+      <div class="hero-card">
+        <h2>Στοιχεία</h2>
+        <p class="sub">Αιγάλεω</p>
+        <p class="sub">Ραντεβού αποκλειστικά μέσω τηλεφώνου</p>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <footer>
-      <div class="container">
-        <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
-          <span>© <span id="year"></span> Χρυσούλα Κοκκίνου — Ψυχολόγος (Αιγάλεω)</span>
-          <span style="opacity:.9;">Σχεδίαση: με αγάπη 💙</span>
-        </div>
+  <section id="about">
+    <div class="container">
+      <h2>Σχετικά</h2>
+      <p class="sub">
+        Δημιουργία ενός ασφαλούς πλαισίου όπου μπορείτε να μιλήσετε
+        ελεύθερα, με σεβασμό και επαγγελματισμό.
+      </p>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2>Υπηρεσίες</h2>
+      <div class="grid-3">
+        <div class="card">Ατομικές συνεδρίες</div>
+        <div class="card">Διαχείριση άγχους</div>
+        <div class="card">Σχέσεις & αυτοεκτίμηση</div>
       </div>
-    </footer>
-  </main>
+    </div>
+  </section>
 
-  <sc
+  <section id="contact">
+    <div class="container">
+      <h2>Επικοινωνία</h2>
+      <p class="sub">
+        Για ραντεβού παρακαλώ καλέστε στο
+        <a href="tel:+30XXXXXXXXXX">+30 XXXXXXXXXX</a>
+      </p>
+      <p class="sub">
+        Email:
+        <a href="mailto:example@email.com">example@email.com</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Χρυσούλα Κοκκίνου
+    </div>
+  </footer>
+</main>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+  const btn = document.getElementById("menuBtn");
+  const mobile = document.getElementById("mobileNav");
+  btn.addEventListener("click", () => {
+    mobile.hidden = !mobile.hidden;
+  });
+</script>
+</body>
+</html>
